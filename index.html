@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List Application</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', sans-serif;
+      background-image: url("https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg");
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
+    #todo-app {
+      width: 500px;
+      border-radius: 30px;
+      border-color: red;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    #todo-header {
+      padding: 10px;
+      background-image: url("https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-fresh-and-simple-vertical-spring-background-image_201916.jpg");
+      background-size: cover;
+      color: blueviolet;
+      text-align: center;
+      font-size: 1.2em;
+      position: relative;
+    }
+
+    #todo-list {
+      padding: 35px;
+      color: black;
+      font-size: 1.6em;
+      background-image: url("https://media.istockphoto.com/id/1294181713/vector/retro-delicate-wedding-card-with-pink-watercolor-texture-and-flowers.jpg?s=612x612&w=0&k=20&c=DNs2eGlajOhChSESGAl6BbFW_uk9k4WQKBzm2dykSok=");
+      background-size: cover;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px;
+      border-bottom: 1px solid #ecf0f1;
+      font-size: 1em;
+    }
+
+    .todo-item input[type="checkbox"] {
+      margin-right: 30px;
+    }
+
+    #add-todo {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-image: url("https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-fresh-and-simple-vertical-spring-background-image_201916.jpg");
+      background-size: cover;
+    }
+
+    #add-todo input[type="text"] {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: 20px;
+      margin-right: 10px;
+      color: black;
+      font-size: 1em;
+      background-color: whitesmoke;
+    }
+
+    #add-todo button {
+      padding: 15px 20px;
+      background-color: blueviolet;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fadeIn {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div id="todo-app" class="fadeIn">
+    <div id="todo-header">
+      <h2>To-Do List</h2>
+    </div>
+    <div id="todo-list"></div>
+    <div id="add-todo">
+      <input type="text" id="new-todo" placeholder="Add your Task">
+      <button onclick="addTodo()">Add Task</button>
+    </div>
+  </div>
+
+  <script>
+    function addTodo() {
+      const todoText = document.getElementById('new-todo').value.trim();
+      if (todoText !== '') {
+        const todoList = document.getElementById('todo-list');
+        const todoItem = document.createElement('div');
+        todoItem.classList.add('todo-item');
+        todoItem.innerHTML = `
+          <input type="checkbox">
+          <span>${todoText}</span>
+          <button onclick="removeTodo(this)">Remove</button>
+        `;
+        todoList.appendChild(todoItem);
+        document.getElementById('new-todo').value = '';
+      }    
+    }
+
+    function removeTodo(button) {
+      const todoItem = button.parentElement;
+      todoItem.remove();
+    }
+  </script>
+</body>
+</html>
